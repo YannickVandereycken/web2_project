@@ -1,0 +1,328 @@
+/* Yannick Vandereycken r0663460 */
+/* Kleuren in variabelen om makkelijk aan te passen voor contrastwijzigingen enz */
+:root {
+    --background: #14526B;
+    --colorbox: #1CB0A3;
+    --colorhighlight: #6FB1C9;
+    --white: #FFFFFF;
+    --grey: #eeeeee;
+    --black: #111111;
+}
+
+/* Stijl resetten om met een clean slate te beginnen en border box om correcter te dimensioneren*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font van de tekst met een standaard backup-font  */
+html {
+    font-family: 'Jost', sans-serif, Georgia, serif;
+}
+
+/* Font van de headers aanpassen met een serif font */
+h1, h2, h3, h4 {
+    font-family: 'Bodoni Moda', serif;
+}
+
+/* Headers hun grootte en eventuele padding geven */
+h1 {
+    font-size: 3.2rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+    padding-top: 1.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+    padding-top: 1.3rem;
+    padding-bottom: 1rem;
+}
+
+/* Achtergrondkleur van de header */
+header {
+    background-color: var(--background);
+}
+
+/*  Logo en titel in een flex zodat dit makkelijker aanpast voor groot en klein scherm
+    En zo aangepast dat de onderkant van de titel en het logo overeen komen */
+header .logotitle {
+    display: flex;
+    align-items: flex-end;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: .5em;
+}
+
+header .logotitle h1 {
+    margin: 0;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: var(--white);
+    align-self: flex-end;
+}
+
+header .logotitle img {
+    max-width: 150px;
+    margin-right: 1em;
+    margin-bottom: 11px;
+    display: block;
+    vertical-align: bottom;
+}
+
+nav {
+    padding: .1em 0;
+}
+
+/* Navigatie in flex zodat dit vertical is in mobile en horizontal in desktop */
+nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+}
+
+nav ul li {
+    display: block;
+    color: var(--black);
+    text-align: center;
+    font-size: .8em;
+    width: 95%;
+}
+
+/* Mooi afgeronde borders aan de links naar de andere pagina's en display block zodat heel het vak klikbaar is */
+nav ul li a {
+    color: var(--black);
+    font-size: 1.3rem;
+    text-decoration: none;
+    display: block;
+    background-color: var(--colorbox);
+    border: 1px solid var(--colorbox);
+    margin-right: 3px;
+    margin-bottom: 3px;
+    padding: 1rem 0;
+    border-radius: 15% 15%;
+}
+
+/* Kleuren en onderlijning van de links aanpassen */
+nav a:visited {
+    color: var(--black);
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav a.here {
+    background-color: var(--colorhighlight);
+    border: 1px solid var(--colorhighlight);
+}
+
+/* Max breedte instellen zodat het niet te breed wordt in desktop en margin auto voor te centreren */
+.container {
+    width: 90%;
+    max-width: 61rem;
+    margin: 0 auto;
+}
+
+body {
+    margin: 0 auto;
+    background-color: var(--grey);
+}
+
+article, address, div, aside {
+    padding-bottom: 1em;
+}
+
+/* Tekst iets groter maken voor leesbaarheid en een beetje spatie tussen de verschillende segmenten voor esthetiek */
+p {
+    margin-top: .5em;
+    margin-bottom: 1.4em;
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+/* De banner over de hele breedte */
+main#home h2, h2 > img {
+    width: 100%;
+    padding-top: 0;
+}
+
+main article img {
+    width: 100%;
+    margin-top: .8em;
+    margin-bottom: 1em;
+}
+
+/* Links zwart maken zodat deze niet blauw/paars zijn */
+main a, main a:visited {
+    color: var(--black);
+}
+
+/* Formulier in zelfde box steken als navigatie elementen */
+#form {
+    background-color: var(--colorbox);
+    border: 1px solid var(--colorbox);
+    margin: 1em auto;
+    padding: 1rem 0;
+    border-radius: 3%;
+}
+
+#form > h2, #form > h3, #form > form, #form > p, #form > figure {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#form > form {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid var(--black);
+}
+
+#form label {
+    margin-bottom: .5rem;
+}
+
+/* Input vakken een border geven, accessible maken en iets breder/hoger maken dan de tekst die erin komt */
+#form select, input, textarea {
+    display: block;
+    line-height: 1.5em;
+    border: 2px solid var(--background);
+    border-radius: .5rem;
+    width: 100%;
+    font-size: .9rem;
+    padding: .6rem;
+    margin-top: .5em;
+}
+
+#form select {
+    width: auto;
+}
+
+/* Verstuurknop volledig breedte geven en een achtergrondkleur die hetzelfde is als die van de huidige pagina aanduiding */
+input#verstuur {
+    margin: auto;
+    width: 100%;
+    line-height: 2em;
+    background-color: var(--colorhighlight);
+}
+
+tr, th, td{
+    padding: 2em;
+    margin: 2em;
+}
+
+/* Footer dezelfde achtergrondkleur geven als de header en een zwarte streep erboven */
+footer {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--black);
+    background-color: var(--background);
+    color: var(--white);
+    padding: 1em 0;
+}
+
+footer h3, footer h4 {
+    padding-bottom: .5em;
+}
+
+/* Instellingen voor middelbreed scherm */
+@media screen and (min-width: 700px) {
+    body {
+        width: 100%;
+    }
+
+    /* Navigatie horizontaal zetten */
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav li {
+        margin-left: .3em;
+    }
+}
+
+/* Instellingen voor breed scherm */
+@media screen and (min-width: 1200px) {
+    body {
+        width: 100%;
+    }
+
+    /* Logo en titel nog iets groter maken voor breder scherm */
+    header .logotitle img {
+        max-width: 200px;
+        margin-bottom: 16px;
+    }
+
+    header .logotitle h1 {
+        font-size: 6rem;
+        line-height: 1.1;
+    }
+
+    /* Een max hoogte geven zodat de banner niet te veel van het scherm inneemt */
+    main#home #banner img {
+        height: 7em;
+    }
+
+    /* De homepagina een grid maken zodat de tekst en fotos naast elkaar staan */
+    main#home div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1em;
+        align-items: start;
+    }
+
+    main#home article {
+        grid-column: 1;
+        align-self: start;
+    }
+
+    main#home article, main#home aside {
+        display: grid;
+        grid-template-rows: 4rem 24rem;
+    }
+
+    /* Het formulier maken de het in twee kolommen (tekst en input) naast elkaar is ipv onder elkaar */
+    #form form p {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1em;
+    }
+
+    /* Tekst rechts uitlijnen voor duidelijkheid */
+    #form form p {
+        text-align: right;
+    }
+
+    /* De knoppen links uitlijnen zodat dit allemaal samenkomt in de middelste as */
+    #form form .buttons {
+        text-align: left;
+    }
+
+    #form input, textarea {
+        grid-column: 2;
+    }
+
+    #form select, input, textarea {
+        width: 75%;
+    }
+
+    #form p.long label {
+        grid-column: 2;
+    }
+
+    input#verstuur {
+        margin: 0;
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    header .logotitle h1 {
+        font-size: 2rem;
+        line-height: 1.4;
+    }
+}
