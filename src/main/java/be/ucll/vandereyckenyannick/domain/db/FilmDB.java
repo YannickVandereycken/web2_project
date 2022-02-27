@@ -13,6 +13,8 @@ public class FilmDB {
     }
 
     public void add(Film film){
+        this.sequence++;
+        film.setId(sequence);
         filmlist.add(film);
     }
 
