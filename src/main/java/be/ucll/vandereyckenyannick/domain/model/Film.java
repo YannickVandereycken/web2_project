@@ -6,6 +6,7 @@ public class Film {
     private int speelduur;
     private double rating;
 
+    //empty constructor
     public Film() {
 
     }
