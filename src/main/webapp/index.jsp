@@ -14,7 +14,7 @@
         <ul>
             <li><a href="index.jsp" class="here">Home</a></li>
             <li><a href="add.jsp">Voeg Toe</a></li>
-            <li><a href="overview.jsp">Overzicht</a></li>
+            <li><a href="FilmServlet">Overzicht</a></li>
         </ul>
     </nav>
 </header>
@@ -22,7 +22,6 @@
     <h1>Mijn persoonlijke filmbibliotheek</h1>
     <p>Hier houd ik alle film bij die ik onlangs gezien heb.</p>
     <p>Ik zet ze in mijn database met titel, speelduur, datum van kijken en rating.</p>
-    <a href="hello-servlet">Hello Servlet</a>
 </main>
 <footer>
     <div class="container">
