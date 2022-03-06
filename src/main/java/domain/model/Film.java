@@ -1,4 +1,4 @@
-package be.ucll.vandereyckenyannick.domain.model;
+package domain.model;
 
 public class Film {
     private int id;
@@ -6,10 +6,7 @@ public class Film {
     private int speelduur;
     private double rating;
 
-    //empty constructor
-    public Film() {
-
-    }
+    //Add releasejaar
 
     public Film(String titel, int speelduur, double rating) {
         this.titel = titel;
@@ -35,5 +32,9 @@ public class Film {
 
     public void setTitel(String titel) {
         this.titel = titel;
+    }
+
+    public String getSpeelduurHours(){
+        return speelduur/60 +"u " + speelduur%60+"m";
     }
 }

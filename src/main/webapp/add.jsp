@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="nl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voeg Toe</title>
@@ -13,7 +14,7 @@
         <ul>
             <li><a href="index.jsp">Home</a></li>
             <li><a href="add.jsp" class="here">Voeg Toe</a></li>
-            <li><a href="overview.jsp">Overzicht</a></li>
+            <li><a href="FilmServlet">Overzicht</a></li>
         </ul>
     </nav>
 </header>

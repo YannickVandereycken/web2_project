@@ -1,5 +1,8 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="nl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overzicht</title>
@@ -13,13 +16,14 @@
         <ul>
             <li><a href="index.jsp">Home</a></li>
             <li><a href="add.jsp">Voeg Toe</a></li>
-            <li><a href="overview.jsp" class="here">Overzicht</a></li>
+            <li><a href="FilmServlet" class="here">Overzicht</a></li>
         </ul>
     </nav>
 </header>
 <main class="container">
     <h1>Overzicht</h1>
     <table>
+        <thead>
         <tr>
             <th>Titel</th>
             <th>Speelduur</th>
@@ -27,28 +31,36 @@
             <th>Wijzig</th>
             <th>Verwijder</th>
         </tr>
+        </thead>
+        <tbody>
+        <%
+            ArrayList<Film> filmlist = (ArrayList<Film>) request.getAttribute("filmlist");
+            for (Film f : filmlist) {
+        %>
         <tr>
-            <td>Dune</td>
-            <td>2h30</td>
-            <td>9</td>
+            <td><%= f.getTitel()%></td>
+            <td><%= f.getSpeelduurHours()%></td>
+            <td><%= f.getRating()%></td>
             <td><a href="#">Wijzig</a></td>
             <td><a href="#">Verwijder</a></td>
         </tr>
-        <tr>
-            <td>Inception</td>
-            <td>2h20</td>
-            <td>10</td>
-            <td><a href="#">Wijzig</a></td>
-            <td><a href="#">Verwijder</a></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#">Wijzig</a></td>
-            <td><a href="#">Verwijder</a></td>
-        </tr>
+        <%
+            }
+        %>
+        </tbody>
     </table>
+    <h2>De film met de hoogste rating is:</h2>
+    <p id="maxrating">
+        <%= ((Film) request.getAttribute("maxr")).getTitel()%> met een lengte van
+        <%= ((Film) request.getAttribute("maxr")).getSpeelduurHours()%> en een rating van
+        <%= ((Film) request.getAttribute("maxr")).getRating()%>/10
+    </p>
+    <h2>De film met de langste Speelduur is:</h2>
+    <p id="maxspeelduur">
+        <%= ((Film) request.getAttribute("maxs")).getTitel()%> met een lengte van
+        <%= ((Film) request.getAttribute("maxs")).getSpeelduurHours()%> en een rating van
+        <%= ((Film) request.getAttribute("maxs")).getRating()%>/10
+    </p>
 </main>
 <footer>
     <div class="container">
