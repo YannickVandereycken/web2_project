@@ -210,9 +210,14 @@ input#verstuur {
     background-color: var(--colorhighlight);
 }
 
-tr, th, td{
+table thead{
+    background-color: var(--colorbox);
+}
+
+table tr, th, td{
     padding: 2em;
     margin: 2em;
+    border: 1px solid var(--black) ;
 }
 
 /* Footer dezelfde achtergrondkleur geven als de header en een zwarte streep erboven */

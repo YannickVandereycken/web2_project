@@ -8,12 +8,15 @@ public class FilmDB {
     private int sequence = 0;
     private ArrayList<Film> filmlist;
 
-    public FilmDB(){
+    //add findfilm
+    //add removefilm
+
+    public FilmDB() {
         filmlist = new ArrayList<>();
-        Film dune = new Film("Dune",155,9);
-        Film inception = new Film("Inception",148,9.5);
-        Film tenet = new Film("Tenet",150,10);
-        Film lotr1 = new Film("The Lord of the Rings: The Fellowship of the Ring",178,8);
+        Film dune = new Film("Dune", 155, 2021, 9);
+        Film inception = new Film("Inception", 148, 2010, 9.5);
+        Film tenet = new Film("Tenet", 150, 2021, 10);
+        Film lotr1 = new Film("The Lord of the Rings: The Fellowship of the Ring", 178, 2001, 8);
         filmlist.add(dune);
         filmlist.add(inception);
         filmlist.add(tenet);
@@ -26,12 +29,13 @@ public class FilmDB {
 
     public void add(Film film) {
         for (Film f : filmlist) {
-            if (!f.getTitel().equals(film.getTitel())) {
-                this.sequence++;
-                film.setId(sequence);
-                filmlist.add(film);
-            } else throw new IllegalArgumentException("Film is al in lijst");
+            if (f.getTitel().equals(film.getTitel())) {
+                throw new IllegalArgumentException("Film is al in lijst");
+            }
         }
+        this.sequence++;
+        film.setId(sequence);
+        filmlist.add(film);
     }
 
     public void vervangTitel(String titel, Film film) {
@@ -40,6 +44,22 @@ public class FilmDB {
                 f.setTitel(titel);
             }
         }
+    }
+
+    public Film vindFilm(Film film) {
+        if (film == null) throw new IllegalArgumentException("film mag niet leeg zijn");
+        for (Film f : filmlist) {
+            if (f.getTitel().equals(film.getTitel())) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+
+    public void verwijderFilm(Film film) {
+        if (film == null) throw new IllegalArgumentException("film mag niet leeg zijn");
+        filmlist.remove(film);
     }
 
     public int gemiddeldeSpeelduur() {
@@ -67,7 +87,7 @@ public class FilmDB {
     }
 
     public Film MaxSpeelduur() {
-        Film max = new Film("max", 0, 0);
+        Film max = new Film("max", 0, 0, 0);
         for (Film f : filmlist) {
             if (f != null) {
                 if (f.getSpeelduur() > max.getSpeelduur()) {
@@ -79,7 +99,7 @@ public class FilmDB {
     }
 
     public Film MaxRating() {
-        Film max = new Film("max", 0, 0);
+        Film max = new Film("max", 0, 0, 0);
         for (Film f : filmlist) {
             if (f != null) {
                 if (f.getRating() > max.getRating()) {

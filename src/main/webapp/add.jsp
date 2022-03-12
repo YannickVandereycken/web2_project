@@ -6,10 +6,14 @@
     <title>Voeg Toe</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/webstyle.css">
+    <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
 <header>
-    <h1 class="logotitle">Filmbibliotheek</h1>
+    <div  class="logotitle">
+        <img src="images/YMDb_Logo.png" alt="IMDB">
+        <h1>Filmbibliotheek</h1>
+    </div>
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
@@ -21,10 +25,11 @@
 <main>
     <article id="form" class="container">
         <h2>Voeg je favoriete films toe</h2>
-        <form action="#">
-            <p><label for="titel">Titel*</label><input type="text" id="titel" required autofocus></p>
-            <p><label for="time">Speelduur (min.)*</label><input type="number" id="time" required></p>
-            <p><label for="rating">Rating*</label><input type="number" id="rating" max="10" min="0" required></p>
+        <form action="FilmServlet" method="post" novalidate>
+            <p><label for="titel">Titel*</label><input type="text" id="titel" name="titel" required autofocus></p>
+            <p><label for="time">Speelduur (min.)*</label><input type="number" id="time" name="tijd" required></p>
+            <p><label for="jaar">Releasejaar*</label><input type="number" id="jaar" name="jaar" required></p>
+            <p><label for="rating">Rating*</label><input type="number" id="rating" max="10" min="0" name="rating" required></p>
             <p><input type="submit" id="verstuur" value="Indienen"></p>
         </form>
     </article>

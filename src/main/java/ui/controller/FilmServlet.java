@@ -11,22 +11,42 @@ import javax.servlet.annotation.*;
 
 @WebServlet("/FilmServlet")
 public class FilmServlet extends HttpServlet {
-    private String message;
+    FilmDB db = new FilmDB();
 
     public void init() {
-        message = "Hello World!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        /*
-        response.setContentType("text/html");
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");*/
+        Film maxRating = db.MaxRating();
+        Film maxSpeelduur = db.MaxSpeelduur();
+        request.setAttribute("maxr", maxRating);
+        request.setAttribute("maxs", maxSpeelduur);
+        request.setAttribute("filmlist", db.getFilmList());
+        request.getRequestDispatcher("overview.jsp").forward(request, response);
+    }
 
-        FilmDB db = new FilmDB();
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean missing=false;
+        if (request.getParameter("titel") == null || (request.getParameter("titel")).isBlank()) {
+            missing=true;
+        }
+        if (request.getParameter("tijd") == null || (request.getParameter("tijd")).isBlank()) {
+            missing=true;
+        }
+        if (request.getParameter("rating") == null || (request.getParameter("rating")).isBlank()) {
+            missing=true;
+        }
+        if (request.getParameter("jaar") == null || (request.getParameter("jaar")).isBlank()) {
+            missing=true;
+        }
+        if(missing){
+            request.getRequestDispatcher("add.jsp").forward(request, response);
+        }
+        String titel = request.getParameter("titel");
+        int tijd = Integer.parseInt(request.getParameter("tijd"));
+        int jaar = Integer.parseInt(request.getParameter("jaar"));
+        double rating = Integer.parseInt(request.getParameter("rating"));
+        db.add(new Film(titel, tijd, jaar, rating));
         Film maxRating = db.MaxRating();
         Film maxSpeelduur = db.MaxSpeelduur();
         request.setAttribute("maxr", maxRating);

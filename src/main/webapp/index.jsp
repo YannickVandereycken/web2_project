@@ -6,10 +6,14 @@
     <title>Filmbibliotheek</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/webstyle.css">
+    <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
 <header>
-    <h1 class="logotitle">Filmbibliotheek</h1>
+    <div  class="logotitle">
+        <img src="images/YMDb_Logo.png" alt="IMDB">
+        <h1>Filmbibliotheek</h1>
+    </div>
     <nav>
         <ul>
             <li><a href="index.jsp" class="here">Home</a></li>

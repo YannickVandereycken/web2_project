@@ -8,10 +8,14 @@
     <title>Overzicht</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/webstyle.css">
+    <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
 <header>
-    <h1 class="logotitle">Filmbibliotheek</h1>
+    <div  class="logotitle">
+        <img src="images/YMDb_Logo.png" alt="IMDB">
+        <h1>Filmbibliotheek</h1>
+    </div>
     <nav>
         <ul>
             <li><a href="index.jsp">Home</a></li>
@@ -28,6 +32,7 @@
             <th>Titel</th>
             <th>Speelduur</th>
             <th>Rating</th>
+            <th>Jaar</th>
             <th>Wijzig</th>
             <th>Verwijder</th>
         </tr>
@@ -40,6 +45,7 @@
         <tr>
             <td><%= f.getTitel()%></td>
             <td><%= f.getSpeelduurHours()%></td>
+            <td><%= f.getJaar()%></td>
             <td><%= f.getRating()%></td>
             <td><a href="#">Wijzig</a></td>
             <td><a href="#">Verwijder</a></td>
