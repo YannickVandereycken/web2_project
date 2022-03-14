@@ -25,6 +25,11 @@
 <main>
     <article id="form" class="container">
         <h2>Voeg je favoriete films toe</h2>
+        <%
+            String message="";
+            if(request.getAttribute("empty")!=null) message=(String)request.getAttribute("empty");
+        %>
+        <p class="error"><%= message %></p>
         <form action="FilmServlet" method="post" novalidate>
             <p><label for="titel">Titel*</label><input type="text" id="titel" name="titel" required autofocus></p>
             <p><label for="time">Speelduur (min.)*</label><input type="number" id="time" name="tijd" required></p>

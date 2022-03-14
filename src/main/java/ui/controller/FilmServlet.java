@@ -14,6 +14,7 @@ public class FilmServlet extends HttpServlet {
     FilmDB db = new FilmDB();
 
     public void init() {
+        //request.setAttribute("empty", false);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -40,6 +41,7 @@ public class FilmServlet extends HttpServlet {
             missing=true;
         }
         if(missing){
+            request.setAttribute("empty", "U vulde niet alle velden in");
             request.getRequestDispatcher("add.jsp").forward(request, response);
         }
         String titel = request.getParameter("titel");
