@@ -47,7 +47,7 @@ public class FilmServlet extends HttpServlet {
         String titel = request.getParameter("titel");
         int tijd = Integer.parseInt(request.getParameter("tijd"));
         int jaar = Integer.parseInt(request.getParameter("jaar"));
-        double rating = Integer.parseInt(request.getParameter("rating"));
+        double rating = Double.parseDouble(request.getParameter("rating"));
         db.add(new Film(titel, tijd, jaar, rating));
         Film maxRating = db.MaxRating();
         Film maxSpeelduur = db.MaxSpeelduur();

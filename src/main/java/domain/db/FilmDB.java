@@ -87,7 +87,7 @@ public class FilmDB {
     }
 
     public Film MaxSpeelduur() {
-        Film max = new Film("max", 0, 0, 0);
+        Film max = new Film("max", 1, 1985, 0);
         for (Film f : filmlist) {
             if (f != null) {
                 if (f.getSpeelduur() > max.getSpeelduur()) {
@@ -99,7 +99,7 @@ public class FilmDB {
     }
 
     public Film MaxRating() {
-        Film max = new Film("max", 0, 0, 0);
+        Film max = new Film("max", 1, 1985, 0);
         for (Film f : filmlist) {
             if (f != null) {
                 if (f.getRating() > max.getRating()) {
