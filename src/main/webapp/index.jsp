@@ -23,7 +23,7 @@
     </nav>
 </header>
 <main id="home" class="container">
-    <h1>Mijn persoonlijke filmbibliotheek</h1>
+    <h2>Mijn persoonlijke filmbibliotheek</h2>
     <p>Hier houd ik alle film bij die ik onlangs gezien heb.</p>
     <p>Ik zet ze in mijn database met titel, speelduur, datum van kijken en rating.</p>
 </main>

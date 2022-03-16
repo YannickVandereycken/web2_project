@@ -25,7 +25,7 @@
     </nav>
 </header>
 <main class="container">
-    <h1>Overzicht</h1>
+    <h2>Overzicht</h2>
     <table>
         <thead>
         <tr>
@@ -55,13 +55,13 @@
         %>
         </tbody>
     </table>
-    <h2>De film met de hoogste rating is:</h2>
+    <h3>De film met de hoogste rating is:</h3>
     <p id="maxrating">
         <%= ((Film) request.getAttribute("maxr")).getTitel()%> met een lengte van
         <%= ((Film) request.getAttribute("maxr")).getSpeelduurHours()%> en een rating van
         <%= ((Film) request.getAttribute("maxr")).getRating()%>/10
     </p>
-    <h2>De film met de langste Speelduur is:</h2>
+    <h3>De film met de langste Speelduur is:</h3>
     <p id="maxspeelduur">
         <%= ((Film) request.getAttribute("maxs")).getTitel()%> met een lengte van
         <%= ((Film) request.getAttribute("maxs")).getSpeelduurHours()%> en een rating van
