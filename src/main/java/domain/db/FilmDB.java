@@ -16,7 +16,7 @@ public class FilmDB {
         Film dune = new Film("Dune", 155, 2021, 9);
         Film inception = new Film("Inception", 148, 2010, 9.5);
         Film tenet = new Film("Tenet", 150, 2021, 10);
-        Film lotr1 = new Film("The Lord of the Rings: The Fellowship of the Ring", 178, 2001, 8);
+        Film lotr1 = new Film("The Lord of the Rings: The Fellowship of the Ring", 178, 2001, 8.5);
         filmlist.add(dune);
         filmlist.add(inception);
         filmlist.add(tenet);
@@ -29,7 +29,7 @@ public class FilmDB {
 
     public void add(Film film) {
         for (Film f : filmlist) {
-            if (f.getTitel().equals(film.getTitel())) {
+            if (f.getTitel().equalsIgnoreCase(film.getTitel())) {
                 throw new IllegalArgumentException("Film is al in lijst");
             }
         }
@@ -40,22 +40,21 @@ public class FilmDB {
 
     public void vervangTitel(String titel, Film film) {
         for (Film f : filmlist) {
-            if (f.getTitel().equals(film.getTitel())) {
+            if (f.getTitel().equalsIgnoreCase(film.getTitel())) {
                 f.setTitel(titel);
             }
         }
     }
 
-    public Film vindFilm(Film film) {
-        if (film == null) throw new IllegalArgumentException("film mag niet leeg zijn");
+    public Film vindFilm(String titel) {
+        if (titel == null || titel.isBlank()) throw new IllegalArgumentException("film mag niet leeg zijn");
         for (Film f : filmlist) {
-            if (f.getTitel().equals(film.getTitel())) {
+            if (f.getTitel().equalsIgnoreCase(titel)) {
                 return f;
             }
         }
         return null;
     }
-
 
     public void verwijderFilm(Film film) {
         if (film == null) throw new IllegalArgumentException("film mag niet leeg zijn");
