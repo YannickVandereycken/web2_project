@@ -111,7 +111,7 @@ public class FilmServlet extends HttpServlet {
             missing = true;
         }
         if (missing) {
-            request.setAttribute("empty", "U vulde niet alle velden in");
+            request.setAttribute("error", "U vulde niet alle velden in");
             return "add.jsp";
         }
         String titel = request.getParameter("titel");

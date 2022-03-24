@@ -9,13 +9,9 @@
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div class="logotitle">
-        <img src="images/YMDb_Logo.png" alt="IMDB">
-        <h1>Filmbibliotheek</h1>
-    </div>
-    <%@include file="nav.jspf" %>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="current" value="search"/>
+</jsp:include>
 <main class="container">
     <article id="form" class="container">
         <h2>Zoek in de filmbibliotheek</h2>

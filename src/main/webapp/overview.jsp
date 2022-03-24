@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,13 +12,9 @@
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div  class="logotitle">
-        <img src="images/YMDb_Logo.png" alt="IMDB">
-        <h1>Filmbibliotheek</h1>
-    </div>
-    <%@include file="nav.jspf" %>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="current" value="overview"/>
+</jsp:include>
 <main class="container">
     <h2>Overzicht</h2>
     <table>
@@ -32,21 +29,16 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            ArrayList<Film> filmlist = (ArrayList<Film>) request.getAttribute("filmlist");
-            for (Film f : filmlist) {
-        %>
+        <c:forEach var="f" items="${filmlist}">
         <tr>
-            <td><%= f.getTitel()%></td>
-            <td><%= f.getSpeelduurHours()%></td>
-            <td><%= f.getJaar()%></td>
-            <td><%= f.getRating()%></td>
+            <td>${f.titel}</td>
+            <td>${f.speelduur}</td>
+            <td>${f.jaar}</td>
+            <td>${f.rating}</td>
             <td><a href="#">Wijzig</a></td>
-            <td><a href="FilmServlet?page=confirmation&titel=<%=(String) f.getTitel()%>">Verwijder</a></td>
+            <td><a href="FilmServlet?page=confirmation&titel=${f.titel}">Verwijder</a></td>
         </tr>
-        <%
-            }
-        %>
+        </c:forEach>
         </tbody>
     </table>
 </main>

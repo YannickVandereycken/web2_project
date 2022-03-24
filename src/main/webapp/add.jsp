@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -9,21 +10,15 @@
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div  class="logotitle">
-        <img src="images/YMDb_Logo.png" alt="IMDB">
-        <h1>Filmbibliotheek</h1>
-    </div>
-    <%@ include file="nav.jspf" %>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="current" value="add"/>
+</jsp:include>
 <main class="container">
     <article id="form" class="container">
         <h2>Voeg je favoriete films toe</h2>
-        <%
-            String message="";
-            if(request.getAttribute("empty")!=null) message=(String)request.getAttribute("empty");
-        %>
-        <p class="error"><%= message %></p>
+        <c:if test="${not empty error}">
+            <p class="error">${error}</p>
+        </c:if>
         <form action="FilmServlet" method="post" novalidate>
             <p><label for="titel">Titel*</label><input type="text" id="titel" name="titel" required autofocus></p>
             <p><label for="time">Speelduur (min.)*</label><input type="number" id="time" name="tijd" required></p>

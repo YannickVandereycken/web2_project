@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -19,26 +20,18 @@
 </header>
 <main class="container">
     <h2>Zoekresultaat</h2>
-    <%
-        if (request.getAttribute("result") == null) {
-            Film f = (Film) request.getAttribute("result");
-    %>
-    <h3>Er is geen film de overeenkomt met je zoekopdracht.</h3>
-    <%
-        }
-        if (request.getAttribute("result") != null) {
-            Film f = (Film) request.getAttribute("result");
-    %>
-    <h3>De film die je zocht is:</h3>
-    <p>
-        <%= f.getTitel() %> met een lengte van
-        <%= f.getSpeelduurHours()%> uit het jaar
-        <%= f.getJaar()%> en een rating van
-        <%= f.getRating()%>/10.
-    </p>
-    <%
-        }
-    %>
+    <c:if test="${empty result}">
+        <h3>Er is geen film de overeenkomt met je zoekopdracht.</h3>
+    </c:if>
+    <c:if test="${not empty result}">
+        <h3>De film die je zocht is:</h3>
+        <p>
+                ${result.titel} met een lengte van
+                ${result.speelduurHours} uit het jaar
+                ${result.jaar} en een rating van
+                ${result.rating}/10.
+        </p>
+    </c:if>
     <p><a href="FilmServlet?page=index">Home</a> indien je niet meer geïnteresseerd bent.</p>
 </main>
 <footer>
