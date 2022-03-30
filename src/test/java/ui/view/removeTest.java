@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class removeTest {
     private WebDriver driver;
     private String url = "http://localhost:8080/vandereycken_yannick_war_exploded/";
-    private String url_backup = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
+    private String url_cyclone = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
 
     @Before
     public void setUp() {
@@ -44,9 +44,18 @@ public class removeTest {
     }
 
     @Test
+    public void test_verwijderFilmAnnulationToIndex_inOrde() {
+        String titel = "Inception";
+        driver.findElement(By.id("remove" + titel)).click();
+        driver.findElement(By.id("cancel")).click();
+        assertEquals("Filmbibliotheek", driver.getTitle());
+        assertEquals("Mijn persoonlijke filmbibliotheek", driver.findElement(By.tagName("h2")).getText());
+    }
+
+    @Test
     public void test_verwijderFilmSuccesvol_juisteFilm() {
         removeFilm("Dune");
-        assertEquals("Overzicht", driver.getTitle());
+        assertEquals("Filmbibliotheek", driver.getTitle());
         assertEquals("Overzicht", driver.findElement(By.tagName("h2")).getText());
         assertFalse(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "Dune"));
     }

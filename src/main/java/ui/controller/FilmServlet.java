@@ -17,11 +17,6 @@ public class FilmServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Film maxRating = db.MaxRating();
-        Film maxSpeelduur = db.MaxSpeelduur();
-        request.setAttribute("maxr", maxRating);
-        request.setAttribute("maxs", maxSpeelduur);
-        request.setAttribute("filmlist", db.getFilmList());
         processRequest(request, response);
     }
 
@@ -68,15 +63,12 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String index(HttpServletRequest request) {
-        Film maxRating = db.MaxRating();
-        Film maxSpeelduur = db.MaxSpeelduur();
-        request.setAttribute("maxr", maxRating);
-        request.setAttribute("maxs", maxSpeelduur);
+        request.setAttribute("maxr", db.MaxRating());
+        request.setAttribute("maxs", db.MaxSpeelduur());
         return "index.jsp";
     }
 
     private String overview(HttpServletRequest request) {
-
         request.setAttribute("filmlist", db.getFilmList());
         return "overview.jsp";
     }
@@ -86,6 +78,9 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String search(HttpServletRequest request) {
+        if (request.getParameter("titel") == null || (request.getParameter("titel")).isBlank()) {
+            return goSearch(request);
+        }
         String titel = request.getParameter("titel");
         request.setAttribute("result", db.vindFilm(titel));
         return "result.jsp";
@@ -97,20 +92,26 @@ public class FilmServlet extends HttpServlet {
 
     private String add(HttpServletRequest request) {
         boolean missing = false;
+        String nietingevuld = "U vulde de volgende dingen niet in:";
         if (request.getParameter("titel") == null || (request.getParameter("titel")).isBlank()) {
             missing = true;
+            nietingevuld += " titel ";
         }
         if (request.getParameter("tijd") == null || (request.getParameter("tijd")).isBlank()) {
             missing = true;
-        }
-        if (request.getParameter("rating") == null || (request.getParameter("rating")).isBlank()) {
-            missing = true;
+            nietingevuld += " speelduur ";
         }
         if (request.getParameter("jaar") == null || (request.getParameter("jaar")).isBlank()) {
             missing = true;
+            nietingevuld += " releasejaar ";
+        }
+        if (request.getParameter("rating") == null || (request.getParameter("rating")).isBlank()) {
+            missing = true;
+            nietingevuld += " rating ";
         }
         if (missing) {
-            request.setAttribute("error", "U vulde niet alle velden in");
+            request.setAttribute("error", nietingevuld);
+            //"U vulde niet alle velden in"
             return "add.jsp";
         }
         String titel = request.getParameter("titel");

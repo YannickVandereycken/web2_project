@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class htmlTest {
     private WebDriver driver;
-    private String url = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
+    private String url_cyclone = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
 
     @Before
     public void setUp() {
@@ -34,24 +34,24 @@ public class htmlTest {
     @Test // Voer deze test uit als je je project opgeladen hebt
     public void html_index() {
         isValidHtml("http://cyclone3.uclllabs.be:8081/vandereycken-yannick/index.jsp");
-        //isValidHtml(url + "FilmServlet");
+        //isValidHtml(url_cyclone + "FilmServlet");
     }
 
     @Test // Voer deze test uit als je je project opgeladen hebt
     public void html_overview() {
         isValidHtml("http://cyclone3.uclllabs.be:8081/vandereycken-yannick/FilmServlet");
-        //isValidHtml(url + "FilmServlet?page=overview");
+        //isValidHtml(url_cyclone + "FilmServlet?page=overview");
     }
 
     @Test // Voer deze test uit als je je project opgeladen hebt
     public void html_add() {
         isValidHtml("http://cyclone3.uclllabs.be:8081/vandereycken-yannick/add.jsp");
-        //isValidHtml(url + "FilmServlet?page=add");
+        //isValidHtml(url_cyclone + "FilmServlet?page=add");
     }
 
     //@Test // Voer deze test uit als je je project opgeladen hebt
     //public void html_search() {
-    //    isValidHtml(url + "FilmServlet?page=search");
+    //    isValidHtml(url_cyclone + "FilmServlet?page=search");
     //}
 
     public void isValidHtml(String url) {

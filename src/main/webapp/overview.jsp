@@ -39,6 +39,7 @@
             <td><a href="FilmServlet?page=confirmation&titel=${f.titel}" id="remove${f.titel}">Verwijder</a></td>
         </tr>
         </c:forEach>
+        <!-- URL = URL.replaceAll("%20", ""); -->
         </tbody>
     </table>
 </main>

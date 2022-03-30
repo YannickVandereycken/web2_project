@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class searchTest {
     private WebDriver driver;
     private String url = "http://localhost:8080/vandereycken_yannick_war_exploded/";
-    private String url_backup = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
+    private String url_cyclone = "http://cyclone3.uclllabs.be:8081/vandereycken-yannick/";
 
     @Before
     public void setUp(){
