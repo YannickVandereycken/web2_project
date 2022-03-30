@@ -220,6 +220,10 @@ input#verstuur {
     color: var(--red);
 }
 
+table{
+    padding-bottom: 5rem;
+}
+
 table thead{
     background-color: var(--colorbox);
 }

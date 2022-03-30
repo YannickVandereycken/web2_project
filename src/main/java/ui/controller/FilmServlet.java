@@ -14,7 +14,6 @@ public class FilmServlet extends HttpServlet {
     FilmDB db = new FilmDB();
 
     public void init() {
-        //request.setAttribute("empty", false);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

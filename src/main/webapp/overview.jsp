@@ -36,7 +36,7 @@
             <td>${f.jaar}</td>
             <td>${f.rating}</td>
             <td><a href="#">Wijzig</a></td>
-            <td><a href="FilmServlet?page=confirmation&titel=${f.titel}">Verwijder</a></td>
+            <td><a href="FilmServlet?page=confirmation&titel=${f.titel}" id="remove${f.titel}">Verwijder</a></td>
         </tr>
         </c:forEach>
         </tbody>

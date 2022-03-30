@@ -13,25 +13,7 @@
 <jsp:include page="header.jsp">
     <jsp:param name="current" value="index"/>
 </jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<jsp:include page="header.jsp">
-    <jsp:param name="current" value="index"/>
-</jsp:include>
-<main id="home" class="container">
+<main class="container">
     <h2>Mijn persoonlijke filmbibliotheek</h2>
     <p>Hier houd ik alle film bij die ik onlangs gezien heb.</p>
     <p>Ik zet ze in mijn database met titel, speelduur, datum van kijken en rating.</p>
