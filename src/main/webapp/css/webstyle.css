@@ -8,6 +8,7 @@
     --grey: #eeeeee;
     --black: #111111;
     --red: #ff0000;
+    --green: #008000;
 }
 
 /* Stijl resetten om met een clean slate te beginnen en border box om correcter te dimensioneren*/
@@ -135,7 +136,7 @@ body {
     background-color: var(--grey);
 }
 
-main{
+main {
     min-height: 60vh;
 }
 
@@ -216,22 +217,32 @@ input#verstuur {
     background-color: var(--colorhighlight);
 }
 
-.error{
+.error {
     color: var(--red);
 }
 
-table{
+.confirm {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.cancel {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+table {
     padding-bottom: 5rem;
 }
 
-table thead{
+table thead {
     background-color: var(--colorbox);
 }
 
-table tr, th, td{
+table tr, th, td {
     padding: 2em;
     margin: 2em;
-    border: 1px solid var(--black) ;
+    border: 1px solid var(--black);
 }
 
 /* Footer dezelfde achtergrondkleur geven als de header en een zwarte streep erboven */

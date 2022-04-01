@@ -4,7 +4,7 @@
 <html lang="nl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voeg Toe</title>
+    <title>Wijzig</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/webstyle.css">
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
@@ -15,7 +15,7 @@
 </jsp:include>
 <main class="container">
     <article id="form" class="container">
-        <h2>Voeg je favoriete films toe</h2>
+        <h2>Wijzig de volgende film</h2>
         <c:forEach var="e" items="${errors}">
             <p class="error">${e}</p>
         </c:forEach>
@@ -24,7 +24,8 @@
             <p><label for="time">Speelduur (min.)</label><input type="number" id="time" name="tijd" value="${tijdPrevious}" required></p>
             <p><label for="jaar">Releasejaar</label><input type="number" id="jaar" name="jaar" value="${jaarPrevious}" required></p>
             <p><label for="rating">Rating/10.0</label><input type="number" id="rating" max="10" min="0" name="rating" value="${ratingPrevious}" required></p>
-            <input type="hidden" name="page" value="addFilm">
+            <input type="hidden" name="id" value="${id}">
+            <input type="hidden" name="page" value="updateFilm">
             <p><input type="submit" id="verstuur" value="indienen"></p>
         </form>
     </article>

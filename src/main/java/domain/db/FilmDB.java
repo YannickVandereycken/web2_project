@@ -5,22 +5,20 @@ import domain.model.Film;
 import java.util.ArrayList;
 
 public class FilmDB {
-    private int sequence = 0;
+    private int sequence;
     private ArrayList<Film> filmlist;
 
-    //add findfilm
-    //add removefilm
-
     public FilmDB() {
+        this.sequence = 0;
         filmlist = new ArrayList<>();
         Film dune = new Film("Dune", 155, 2021, 9);
         Film inception = new Film("Inception", 148, 2010, 9.5);
         Film tenet = new Film("Tenet", 150, 2021, 10);
         Film lotr1 = new Film("The Lord of the Rings: The Fellowship of the Ring", 178, 2001, 8.5);
-        filmlist.add(dune);
-        filmlist.add(inception);
-        filmlist.add(tenet);
-        filmlist.add(lotr1);
+        this.add(dune);
+        this.add(inception);
+        this.add(tenet);
+        this.add(lotr1);
     }
 
     public ArrayList<Film> getFilmList() {
@@ -35,15 +33,14 @@ public class FilmDB {
         }
         this.sequence++;
         film.setId(sequence);
-        filmlist.add(film);
+        this.filmlist.add(film);
     }
 
-    public void vervangTitel(String titel, Film film) {
-        for (Film f : filmlist) {
-            if (f.getTitel().equalsIgnoreCase(film.getTitel())) {
-                f.setTitel(titel);
-            }
-        }
+    public void wijzigFilm(Film film, int id) {
+        vindId(id).setTitel(film.getTitel());
+        vindId(id).setSpeelduur(film.getSpeelduur());
+        vindId(id).setJaar(film.getJaar());
+        vindId(id).setRating(film.getRating());
     }
 
     public Film vindFilm(String titel) {
@@ -56,6 +53,15 @@ public class FilmDB {
         return null;
     }
 
+    public Film vindId(int id) {
+        //if (id < 0) throw new IllegalArgumentException("id mag niet negatief zijn");
+        for (Film f : this.filmlist) {
+            if (f.getId()==id) {
+                return f;
+            }
+        }
+        return null;
+    }
     public void verwijderFilm(Film film) {
         if (film == null) throw new IllegalArgumentException("film mag niet leeg zijn");
         filmlist.remove(film);

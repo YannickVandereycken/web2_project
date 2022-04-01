@@ -56,6 +56,12 @@ public class FilmServlet extends HttpServlet {
             case "Annuleer":
                 destination = index(request);
                 break;
+            case "update":
+                destination = goUpdate(request);
+                break;
+            case "updateFilm":
+                destination = update(request);
+                break;
             default:
                 destination = index(request);
         }
@@ -91,44 +97,101 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String add(HttpServletRequest request) {
-        boolean missing = false;
-        String nietingevuld = "U vulde de volgende dingen niet in:";
-        if (request.getParameter("titel") == null || (request.getParameter("titel")).isBlank()) {
-            missing = true;
-            nietingevuld += " titel ";
+        ArrayList<String> errors = new ArrayList<String>();
+        Film film = new Film();
+        validateTitel(film, request, errors);
+        validateSpeelduur(film, request, errors);
+        validateJaar(film, request, errors);
+        validateRating(film, request, errors);
+        if (errors.size() == 0) {
+            try {
+                db.add(film);
+                return overview(request);
+            } catch (IllegalArgumentException e) {
+                errors.add(e.getMessage());
+            }
         }
-        if (request.getParameter("tijd") == null || (request.getParameter("tijd")).isBlank()) {
-            missing = true;
-            nietingevuld += " speelduur ";
-        }
-        if (request.getParameter("jaar") == null || (request.getParameter("jaar")).isBlank()) {
-            missing = true;
-            nietingevuld += " releasejaar ";
-        }
-        if (request.getParameter("rating") == null || (request.getParameter("rating")).isBlank()) {
-            missing = true;
-            nietingevuld += " rating ";
-        }
-        if (missing) {
-            request.setAttribute("error", nietingevuld);
-            //"U vulde niet alle velden in"
-            return "add.jsp";
-        }
-        String titel = request.getParameter("titel");
-        int tijd = Integer.parseInt(request.getParameter("tijd"));
-        int jaar = Integer.parseInt(request.getParameter("jaar"));
-        double rating = Double.parseDouble(request.getParameter("rating"));
-        db.add(new Film(titel, tijd, jaar, rating));
-        return overview(request);
+        request.setAttribute("errors", errors);
+        return "add.jsp";
     }
 
     private String confirmation(HttpServletRequest request) {
+        request.setAttribute("db", db);
         return "confirmation.jsp";
     }
 
     private String delete(HttpServletRequest request) {
-        db.verwijderFilm(db.vindFilm(request.getParameter("titel")));
+        db.verwijderFilm(db.vindId(Integer.parseInt(request.getParameter("id"))));
         return overview(request);
+    }
+
+    private String goUpdate(HttpServletRequest request) {
+        Film u = db.vindId(Integer.parseInt(request.getParameter("id")));
+        request.setAttribute("titelPrevious", u.getTitel());
+        request.setAttribute("tijdPrevious", u.getSpeelduur());
+        request.setAttribute("jaarPrevious", u.getJaar());
+        request.setAttribute("ratingPrevious", u.getRating());
+        request.setAttribute("id", request.getParameter("id"));
+        return "update.jsp";
+    }
+
+    private String update(HttpServletRequest request) {
+        ArrayList<String> errors = new ArrayList<String>();
+        Film update = new Film();
+        validateTitel(update, request, errors);
+        validateSpeelduur(update, request, errors);
+        validateJaar(update, request, errors);
+        validateRating(update, request, errors);
+        if (errors.size() == 0) {
+            try {
+                db.wijzigFilm(update,Integer.parseInt(request.getParameter("id")));
+                return overview(request);
+            } catch (IllegalArgumentException e) {
+                errors.add(e.getMessage());
+            }
+        }
+        request.setAttribute("errors", errors);
+        return goUpdate(request);
+    }
+
+    private void validateTitel(Film film, HttpServletRequest request, ArrayList<String> errors) {
+        String titel = request.getParameter("titel");
+        try {
+            film.setTitel(titel);
+            request.setAttribute("titelPrevious", titel);
+        } catch (IllegalArgumentException e) {
+            errors.add(e.getMessage());
+        }
+    }
+
+    private void validateSpeelduur(Film film, HttpServletRequest request, ArrayList<String> errors) {
+        String tijd = request.getParameter("tijd");
+        try {
+            film.setSpeelduur(Integer.parseInt(tijd));
+            request.setAttribute("tijdPrevious", tijd);
+        } catch (IllegalArgumentException e) {
+            errors.add("Speelduur moet positief zijn");
+        }
+    }
+
+    private void validateJaar(Film film, HttpServletRequest request, ArrayList<String> errors) {
+        String jaar = request.getParameter("jaar");
+        try {
+            film.setJaar(Integer.parseInt(jaar));
+            request.setAttribute("jaarPrevious", jaar);
+        } catch (IllegalArgumentException e) {
+            errors.add("Releasejaar moet na 1870 zijn");
+        }
+    }
+
+    private void validateRating(Film film, HttpServletRequest request, ArrayList<String> errors) {
+        String rating = request.getParameter("rating");
+        try {
+            film.setRating(Double.parseDouble(rating));
+            request.setAttribute("ratingPrevious", rating);
+        } catch (IllegalArgumentException e) {
+            errors.add("Rating moet tussen 0 en 10 zijn");
+        }
     }
 
     public void destroy() {

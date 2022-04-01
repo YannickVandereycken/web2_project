@@ -38,7 +38,7 @@ public class removeTest {
     @Test
     public void test_verwijderFilmConfirmation_inOrde() {
         String titel = "Inception";
-        driver.findElement(By.id("remove" + titel)).click();
+        driver.findElement(By.id("remove" + 2)).click();
         assertEquals("Bevestiging", driver.getTitle());
         assertEquals("Verwijdering van deze film", driver.findElement(By.tagName("h2")).getText());
     }
@@ -46,7 +46,7 @@ public class removeTest {
     @Test
     public void test_verwijderFilmAnnulationToIndex_inOrde() {
         String titel = "Inception";
-        driver.findElement(By.id("remove" + titel)).click();
+        driver.findElement(By.id("remove" + 2)).click();
         driver.findElement(By.id("cancel")).click();
         assertEquals("Filmbibliotheek", driver.getTitle());
         assertEquals("Mijn persoonlijke filmbibliotheek", driver.findElement(By.tagName("h2")).getText());
@@ -61,7 +61,7 @@ public class removeTest {
     }
 
     private void removeFilm(String titel) {
-        driver.findElement(By.id("remove" + titel)).click();
+        driver.findElement(By.id("remove" + 1)).click();
         driver.findElement(By.id("confirm")).click();
     }
 

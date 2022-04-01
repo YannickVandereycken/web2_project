@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -19,11 +20,11 @@
 </header>
 <main class="container">
     <h2>Verwijdering van deze film</h2>
-    <p>Ben je zeker dat je de film ${param.titel} wilt verwijderen?</p>
+    <p>Ben je zeker dat je de film ${db.vindId(param.id).titel} wilt verwijderen?</p>
     <form action="FilmServlet" method="post" novalidate>
-        <input type="hidden" name="titel" value="${param.titel}">
-        <p><input type="submit" id="confirm" value="Bevestig" name="page">
-            <input type="submit" id="cancel" value="Annuleer" name="page"></p>
+        <input type="hidden" name="id" value="${param.id}">
+        <p><input type="submit" id="confirm" value="Bevestig" name="page" class="confirm">
+            <input type="submit" id="cancel" value="Annuleer" name="page" class="cancel"></p>
     </form>
 </main>
 <footer>

@@ -35,11 +35,10 @@
             <td>${f.speelduur}</td>
             <td>${f.jaar}</td>
             <td>${f.rating}</td>
-            <td><a href="#">Wijzig</a></td>
-            <td><a href="FilmServlet?page=confirmation&titel=${f.titel}" id="remove${f.titel}">Verwijder</a></td>
+            <td><a href="FilmServlet?page=update&id=${f.id}" id="update${f.id}">Wijzig</a></td>
+            <td><a href="FilmServlet?page=confirmation&id=${f.id}" id="remove${f.id}">Verwijder</a></td>
         </tr>
         </c:forEach>
-        <!-- URL = URL.replaceAll("%20", ""); -->
         </tbody>
     </table>
 </main>
