@@ -53,12 +53,12 @@ public class htmlTest {
 
     @Test
     public void html_confirmation() {
-        isValidHtml(url_cyclone + "FilmServlet?page=confirmation&id=0");
+        isValidHtml(url_cyclone + "FilmServlet?page=confirmation&id=1");
     }
 
     @Test
     public void html_update() {
-        isValidHtml(url_cyclone + "FilmServlet?page=update&id=0");
+        isValidHtml(url_cyclone + "FilmServlet?page=update&id=1");
     }
 
     public void isValidHtml(String url) {

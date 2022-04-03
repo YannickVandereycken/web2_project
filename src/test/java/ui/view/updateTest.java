@@ -90,7 +90,7 @@ public class updateTest {
         driver.findElement(By.id("jaar")).clear();
         driver.findElement(By.id("jaar")).sendKeys(3000 + "");
         driver.findElement(By.id("rating")).clear();
-        driver.findElement(By.id("rating")).sendKeys(10 + "");
+        driver.findElement(By.id("rating")).sendKeys(1 + "");
         driver.findElement(By.id("verstuur")).click();
 
         assertEquals("Overzicht", driver.getTitle());
@@ -98,7 +98,7 @@ public class updateTest {
         assertTrue(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "Dune"));
         assertTrue(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "2u 35m"));
         assertTrue(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "3000"));
-        assertTrue(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "10.0"));
+        assertTrue(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "1.0"));
     }
 
     private boolean paginaBevatItemMetText(List<WebElement> items, String tekst) {
