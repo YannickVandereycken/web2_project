@@ -1,6 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -32,7 +30,7 @@
         <c:forEach var="f" items="${filmlist}">
         <tr>
             <td>${f.titel}</td>
-            <td>${f.speelduur}</td>
+            <td>${f.speelduurHours}</td>
             <td>${f.jaar}</td>
             <td>${f.rating}</td>
             <td><a href="FilmServlet?page=update&id=${f.id}" id="update${f.id}">Wijzig</a></td>

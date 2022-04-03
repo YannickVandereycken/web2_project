@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -15,6 +16,9 @@
 <main class="container">
     <article id="form" class="container">
         <h2>Zoek in de filmbibliotheek</h2>
+        <c:forEach var="e" items="${errors}">
+            <p class="error">${e}</p>
+        </c:forEach>
         <form action="FilmServlet" method="post" novalidate>
             <p><label for="titel">Titel</label><input type="text" id="titel" name="titel" required autofocus></p>
             <input type="hidden" name="page" value="searchFilm">

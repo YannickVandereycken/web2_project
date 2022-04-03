@@ -53,15 +53,16 @@ public class removeTest {
     }
 
     @Test
-    public void test_verwijderFilmSuccesvol_juisteFilm() {
-        removeFilm("Dune");
-        assertEquals("Filmbibliotheek", driver.getTitle());
+    public void test_verwijderFilmSuccesvol_juisteFilmVerwijderd() {
+        String titel = "Tenet";
+        removeFilm(3);
+        assertEquals("Overzicht", driver.getTitle());
         assertEquals("Overzicht", driver.findElement(By.tagName("h2")).getText());
-        assertFalse(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "Dune"));
+        assertFalse(paginaBevatItemMetText(driver.findElements(By.tagName("td")), "Tenet"));
     }
 
-    private void removeFilm(String titel) {
-        driver.findElement(By.id("remove" + 1)).click();
+    private void removeFilm(int id) {
+        driver.findElement(By.id("remove" + id)).click();
         driver.findElement(By.id("confirm")).click();
     }
 

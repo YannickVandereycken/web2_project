@@ -1,9 +1,0 @@
-<nav>
-    <ul>
-        <li><a href="FilmServlet?page=index">Home</a></li>
-        <li><a href="FilmServlet?page=overview">Overzicht</a></li>
-        <li><a href="FilmServlet?page=add">Voeg Toe</a></li>
-        <li><a href="FilmServlet?page=search">Zoek</a></li>
-    </ul>
-</nav>
-<!-- class="here"-->

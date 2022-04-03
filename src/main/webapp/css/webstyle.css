@@ -191,6 +191,7 @@ main a, main a:visited {
 
 #form label {
     margin-bottom: .5rem;
+    padding: .5rem 0;
 }
 
 /* Input vakken een border geven, accessible maken en iets breder/hoger maken dan de tekst die erin komt */
@@ -338,10 +339,15 @@ footer h3, footer h4 {
 
     #form select, input, textarea {
         width: 75%;
+        margin-top: 0;
     }
 
     #form p.long label {
         grid-column: 2;
+    }
+
+    #form label {
+        margin-bottom: 0;
     }
 
     input#verstuur {

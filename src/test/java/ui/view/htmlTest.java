@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,38 +31,41 @@ public class htmlTest {
         driver.quit();
     }
 
-    @Test // Voer deze test uit als je je project opgeladen hebt
+    @Test
     public void html_index() {
         isValidHtml(url_cyclone + "FilmServlet");
     }
 
-    @Test // Voer deze test uit als je je project opgeladen hebt
+    @Test
     public void html_overview() {
         isValidHtml(url_cyclone + "FilmServlet?page=overview");
     }
 
-    @Test // Voer deze test uit als je je project opgeladen hebt
+    @Test
     public void html_add() {
         isValidHtml(url_cyclone + "FilmServlet?page=add");
     }
 
-    @Test // Voer deze test uit als je je project opgeladen hebt
+    @Test
     public void html_search() {
         isValidHtml(url_cyclone + "FilmServlet?page=search");
     }
 
+    @Test
+    public void html_confirmation() {
+        isValidHtml(url_cyclone + "FilmServlet?page=confirmation&id=0");
+    }
+
+    @Test
+    public void html_update() {
+        isValidHtml(url_cyclone + "FilmServlet?page=update&id=0");
+    }
+
     public void isValidHtml(String url) {
-        //driver.get("https://validator.w3.org/#validate_by_uri+with_options");
         driver.get("https://html5.validator.nu");
-        //driver.findElement(By.id("uri")).sendKeys(url);
         driver.findElement(By.id("doc")).sendKeys(url);
 
-//        Select dropdown = new Select(driver.findElement(By.id("uri-doctype")));
-//        dropdown.selectByValue("HTML5");
-
-        //driver.findElement(By.cssSelector(".submit_button")).click();
         driver.findElement(By.id("submit")).click();
-
 //        try {
 //            Thread.sleep(30000);
 //        } catch (InterruptedException e) {

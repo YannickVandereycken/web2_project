@@ -84,12 +84,19 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String search(HttpServletRequest request) {
-        if (request.getParameter("titel") == null || (request.getParameter("titel")).isBlank()) {
-            return goSearch(request);
+        ArrayList<String> errors = new ArrayList<String>();
+        Film film = new Film();
+        validateTitel(film, request, errors);
+        if (errors.size() == 0) {
+            try {
+                request.setAttribute("result", db.vindFilm(request.getParameter("titel")));
+                return "result.jsp";
+            } catch (IllegalArgumentException e) {
+                errors.add(e.getMessage());
+            }
         }
-        String titel = request.getParameter("titel");
-        request.setAttribute("result", db.vindFilm(titel));
-        return "result.jsp";
+        request.setAttribute("errors", errors);
+        return goSearch(request);
     }
 
     private String goAdd(HttpServletRequest request) {
@@ -144,7 +151,7 @@ public class FilmServlet extends HttpServlet {
         validateRating(update, request, errors);
         if (errors.size() == 0) {
             try {
-                db.wijzigFilm(update,Integer.parseInt(request.getParameter("id")));
+                db.wijzigFilm(update, Integer.parseInt(request.getParameter("id")));
                 return overview(request);
             } catch (IllegalArgumentException e) {
                 errors.add(e.getMessage());
@@ -161,6 +168,7 @@ public class FilmServlet extends HttpServlet {
             request.setAttribute("titelPrevious", titel);
         } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
+            request.setAttribute("titelError", true);
         }
     }
 
@@ -171,6 +179,7 @@ public class FilmServlet extends HttpServlet {
             request.setAttribute("tijdPrevious", tijd);
         } catch (IllegalArgumentException e) {
             errors.add("Speelduur moet positief zijn");
+            request.setAttribute("tijdError", true);
         }
     }
 
@@ -181,6 +190,7 @@ public class FilmServlet extends HttpServlet {
             request.setAttribute("jaarPrevious", jaar);
         } catch (IllegalArgumentException e) {
             errors.add("Releasejaar moet na 1870 zijn");
+            request.setAttribute("jaarError", true);
         }
     }
 
@@ -191,6 +201,7 @@ public class FilmServlet extends HttpServlet {
             request.setAttribute("ratingPrevious", rating);
         } catch (IllegalArgumentException e) {
             errors.add("Rating moet tussen 0 en 10 zijn");
+            request.setAttribute("ratingError", true);
         }
     }
 

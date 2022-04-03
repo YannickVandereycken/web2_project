@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
@@ -25,7 +24,6 @@ public class searchTest {
         //WebDriverManager.safaridriver().setup();
         //driver = new SafariDriver();
         driver.get(url + "FilmServlet?page=search");
-        driver.navigate();
     }
 
     @After
@@ -34,7 +32,9 @@ public class searchTest {
     }
 
     @Test
-    public void test_zoekFilmSuccesvol_juisteFilm(){
+    public void test_zoekFilmSuccesvol_juisteFilmGevonden(){
+        assertEquals("Zoek", driver.getTitle());
+        assertEquals("Zoek in de filmbibliotheek", driver.findElement(By.tagName("h2")).getText());
         zoekItem("dune");
         assertEquals("Resultaat", driver.getTitle());
         assertEquals("De film die je zocht is:", driver.findElement(By.tagName("h3")).getText());
@@ -42,13 +42,17 @@ public class searchTest {
 
     @Test
     public void test_zoekFilmNietInDatabase_geenFilmGevonden(){
+        assertEquals("Zoek", driver.getTitle());
+        assertEquals("Zoek in de filmbibliotheek", driver.findElement(By.tagName("h2")).getText());
         zoekItem("The power of the dog");
         assertEquals("Resultaat", driver.getTitle());
         assertEquals("Er is geen film de overeenkomt met je zoekopdracht.", driver.findElement(By.tagName("h3")).getText());
     }
 
     @Test
-    public void test_zoekFilmLegeString_geenFilmGevonden(){
+    public void test_zoekFilmLegeString_TerugNaarZoekformulier(){
+        assertEquals("Zoek", driver.getTitle());
+        assertEquals("Zoek in de filmbibliotheek", driver.findElement(By.tagName("h2")).getText());
         zoekItem("");
         assertEquals("Zoek", driver.getTitle());
         assertEquals("Zoek in de filmbibliotheek", driver.findElement(By.tagName("h2")).getText());

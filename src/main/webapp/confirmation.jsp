@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="domain.model.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="nl">
@@ -11,21 +10,19 @@
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <div class="logotitle">
-        <img src="images/YMDb_Logo.png" alt="IMDB">
-        <h1>Filmbibliotheek</h1>
-    </div>
-    <%@include file="nav.jspf" %>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="current" value=""/>
+</jsp:include>
 <main class="container">
-    <h2>Verwijdering van deze film</h2>
-    <p>Ben je zeker dat je de film ${db.vindId(param.id).titel} wilt verwijderen?</p>
-    <form action="FilmServlet" method="post" novalidate>
-        <input type="hidden" name="id" value="${param.id}">
-        <p><input type="submit" id="confirm" value="Bevestig" name="page" class="confirm">
-            <input type="submit" id="cancel" value="Annuleer" name="page" class="cancel"></p>
-    </form>
+    <article class="container">
+        <h2>Verwijdering van deze film</h2>
+        <p>Ben je zeker dat je de film ${db.vindId(param.id).titel} wilt verwijderen?</p>
+        <form action="FilmServlet" method="post" novalidate>
+            <input type="hidden" name="id" value="${param.id}">
+            <p><input type="submit" id="confirm" value="Bevestig" name="page" class="confirm"></p>
+            <p><input type="submit" id="cancel" value="Annuleer" name="page" class="cancel"></p>
+        </form>
+    </article>
 </main>
 <footer>
     <div class="container">

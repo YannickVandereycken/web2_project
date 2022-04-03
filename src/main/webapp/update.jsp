@@ -20,10 +20,10 @@
             <p class="error">${e}</p>
         </c:forEach>
         <form action="FilmServlet" method="post" novalidate>
-            <p><label for="titel">Titel</label><input type="text" id="titel" name="titel" value="${titelPrevious}" required autofocus></p>
-            <p><label for="time">Speelduur (min.)</label><input type="number" id="time" name="tijd" value="${tijdPrevious}" required></p>
-            <p><label for="jaar">Releasejaar</label><input type="number" id="jaar" name="jaar" value="${jaarPrevious}" required></p>
-            <p><label for="rating">Rating/10.0</label><input type="number" id="rating" max="10" min="0" name="rating" value="${ratingPrevious}" required></p>
+            <p><label for="titel" ${titelError?"class='error'":""}>Titel</label><input type="text" id="titel" name="titel" value="${titelPrevious}" required autofocus></p>
+            <p><label for="tijd" ${tijdError?"class='error'":""}>Speelduur (min.)</label><input type="number" id="tijd" name="tijd" value="${tijdPrevious}" required></p>
+            <p><label for="jaar" ${jaarError?"class='error'":""}>Releasejaar</label><input type="number" id="jaar" name="jaar" value="${jaarPrevious}" required></p>
+            <p><label for="rating" ${ratingError?"class='error'":""}>Rating/10.0</label><input type="number" id="rating" max="10" min="0" name="rating" value="${ratingPrevious}" required></p>
             <input type="hidden" name="id" value="${id}">
             <input type="hidden" name="page" value="updateFilm">
             <p><input type="submit" id="verstuur" value="indienen"></p>
