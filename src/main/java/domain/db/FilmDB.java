@@ -37,10 +37,11 @@ public class FilmDB {
     }
 
     public void wijzigFilm(Film film, int id) {
-        vindId(id).setTitel(film.getTitel());
-        vindId(id).setSpeelduur(film.getSpeelduur());
-        vindId(id).setJaar(film.getJaar());
-        vindId(id).setRating(film.getRating());
+        Film wijzig = vindId(id);
+        wijzig.setTitel(film.getTitel());
+        wijzig.setSpeelduur(film.getSpeelduur());
+        wijzig.setJaar(film.getJaar());
+        wijzig.setRating(film.getRating());
     }
 
     public Film vindFilm(String titel) {
