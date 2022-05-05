@@ -45,7 +45,7 @@ public class FilmServlet extends HttpServlet {
                 destination = goSearch(request);
                 break;
             case "searchFilm":
-                destination = search(request);
+                destination = search(request, response);
                 break;
             case "confirmation":
                 destination = confirmation(request);
@@ -62,13 +62,23 @@ public class FilmServlet extends HttpServlet {
             case "updateFilm":
                 destination = update(request);
                 break;
+            case "goLogbook":
+                destination = goLogbook(request);
+                break;
             default:
                 destination = index(request);
         }
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
+
     private String index(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("logbook")==null) session.setAttribute("logbook", new ArrayList<String>());
+        ArrayList<String> logbook = (ArrayList<String>) session.getAttribute("logbook");
+        logbook.add("index bezocht");
+        session.setAttribute("logbook", logbook);
+
         request.setAttribute("maxr", db.MaxRating());
         request.setAttribute("maxs", db.MaxSpeelduur());
         return "index.jsp";
@@ -83,13 +93,14 @@ public class FilmServlet extends HttpServlet {
         return "search.jsp";
     }
 
-    private String search(HttpServletRequest request) {
+    private String search(HttpServletRequest request, HttpServletResponse response) {
         ArrayList<String> errors = new ArrayList<String>();
         Film film = new Film();
         validateTitel(film, request, errors);
         if (errors.size() == 0) {
             try {
                 request.setAttribute("result", db.vindFilm(request.getParameter("titel")));
+                LastSearch(request, response, request.getParameter("titel"));
                 return "result.jsp";
             } catch (IllegalArgumentException e) {
                 errors.add(e.getMessage());
@@ -161,6 +172,16 @@ public class FilmServlet extends HttpServlet {
         return goUpdate(request);
     }
 
+    private String goLogbook(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        ArrayList<String> logbook = (ArrayList<String>) request.getSession().getAttribute("logbook");
+        logbook.add("logboek bezocht");
+        session.setAttribute("logbook", logbook);
+        String logboektest = (String) request.getSession().getAttribute("logbooktest");
+        session.setAttribute("logboektest","testing");
+        return "logbook.jsp";
+    }
+
     private void validateTitel(Film film, HttpServletRequest request, ArrayList<String> errors) {
         String titel = request.getParameter("titel");
         try {
@@ -203,6 +224,27 @@ public class FilmServlet extends HttpServlet {
             errors.add("Rating moet tussen 0 en 10 zijn");
             request.setAttribute("ratingError", true);
         }
+    }
+
+    private void LastSearch(HttpServletRequest request, HttpServletResponse response, String lastSearchTerm) {
+        Cookie c = new Cookie("lastSearch", lastSearchTerm);
+        response.addCookie(c);
+
+        if (lastSearchTerm != null || lastSearchTerm.isBlank()) {
+            request.setAttribute("requestCookie", lastSearchTerm);
+        }
+    }
+
+    private Cookie getCookieWithKey(HttpServletRequest request, String key) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null)
+            return null;
+        for (Cookie cookie : cookies
+        ) {
+            if (cookie.getName().equals(key))
+                return cookie;
+        }
+        return null;
     }
 
     public void destroy() {

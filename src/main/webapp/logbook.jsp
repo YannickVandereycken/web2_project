@@ -3,28 +3,23 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <title>Zoek</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logboek</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/webstyle.css">
     <link rel="icon" href="images/YMDb_Logo_Square.png" type="image/x-icon">
 </head>
 <body>
 <jsp:include page="header.jsp">
-    <jsp:param name="current" value="search"/>
+    <jsp:param name="current" value=""/>
 </jsp:include>
 <main class="container">
-    <article id="form" class="container">
-        <h2>Zoek in de filmbibliotheek</h2>
-        <c:forEach var="e" items="${errors}">
-            <p class="error">${e}</p>
-        </c:forEach>
-        <form action="FilmServlet" method="post" novalidate>
-            <p><label for="titel">Titel</label><input type="text" id="titel" name="titel" value="${cookie.lastSearch.value}" required autofocus></p>
-            <input type="hidden" name="page" value="searchFilm">
-            <p><input type="submit" id="verstuur" value="indienen"></p>
-        </form>
-    </article>
+    <h2>Logboek</h2>
+    <c:forEach var="l" items="${logboek}">
+        <p>${l}</p>
+        <p>test</p>
+    </c:forEach>
+    <p>${logboektest}</p>
 </main>
 <footer>
     <div class="container">

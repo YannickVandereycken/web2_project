@@ -29,6 +29,7 @@
         ${maxs.speelduurHours} en een rating van
         ${maxs.rating}/10.
     </p>
+    <p><a href="FilmServlet?page=goLogbook">Logboek</a></p>
 </main>
 <footer>
     <div class="container">
