@@ -224,7 +224,7 @@ public class FilmServlet extends HttpServlet {
         Cookie c = new Cookie("lastSearch", lastSearchTerm);
         response.addCookie(c);
 
-        if (lastSearchTerm != null || lastSearchTerm.isBlank()) {
+        if (lastSearchTerm == null || lastSearchTerm.isBlank()) {
             request.setAttribute("requestCookie", lastSearchTerm);
         }
     }

@@ -15,30 +15,37 @@
 </jsp:include>
 <main class="container">
     <h2>Overzicht</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Titel</th>
-            <th>Speelduur</th>
-            <th>Jaar</th>
-            <th>Rating</th>
-            <th>Wijzig</th>
-            <th>Verwijder</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="f" items="${filmlist}">
-        <tr>
-            <td>${f.titel}</td>
-            <td>${f.speelduurHours}</td>
-            <td>${f.jaar}</td>
-            <td>${f.rating}</td>
-            <td><a href="FilmServlet?page=update&id=${f.id}" id="update${f.id}">Wijzig</a></td>
-            <td><a href="FilmServlet?page=confirmation&id=${f.id}" id="remove${f.id}">Verwijder</a></td>
-        </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    <c:choose>
+        <c:when test="${not empty filmlist}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Speelduur</th>
+                    <th>Jaar</th>
+                    <th>Rating</th>
+                    <th>Wijzig</th>
+                    <th>Verwijder</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="f" items="${filmlist}">
+                    <tr>
+                        <td>${f.titel}</td>
+                        <td>${f.speelduurHours}</td>
+                        <td>${f.jaar}</td>
+                        <td>${f.rating}</td>
+                        <td><a href="FilmServlet?page=update&id=${f.id}" id="update${f.id}">Wijzig</a></td>
+                        <td><a href="FilmServlet?page=confirmation&id=${f.id}" id="remove${f.id}">Verwijder</a></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <p>Er zijn geen films </p>
+        </c:otherwise>
+    </c:choose>
 </main>
 <footer>
     <div class="container">
