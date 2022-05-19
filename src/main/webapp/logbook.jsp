@@ -15,11 +15,12 @@
 </jsp:include>
 <main class="container">
     <h2>Logboek</h2>
-    <c:forEach var="l" items="${logboek}">
+    <form action="FilmServlet" method="get" novalidate>
+        <p><input type="submit" id="reset" value="reset" name="page"></p>
+    </form>
+    <c:forEach var="l" items="${logbook}">
         <p>${l}</p>
-        <p>test</p>
     </c:forEach>
-    <p>${logboektest}</p>
 </main>
 <footer>
     <div class="container">

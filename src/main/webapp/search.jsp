@@ -24,6 +24,8 @@
             <input type="hidden" name="page" value="searchFilm">
             <p><input type="submit" id="verstuur" value="indienen"></p>
         </form>
+        <p>response: ${cookie.lastSearch.value}</p>
+        <p>request: ${requestCookie}</p>
     </article>
 </main>
 <footer>

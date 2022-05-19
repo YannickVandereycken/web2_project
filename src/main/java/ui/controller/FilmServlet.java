@@ -30,6 +30,10 @@ public class FilmServlet extends HttpServlet {
         if (request.getParameter("page") != null) {
             page = request.getParameter("page");
         }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("logbook") == null) session.setAttribute("logbook", new ArrayList<String>());
+        ArrayList<String> logbook = (ArrayList<String>) session.getAttribute("logbook");
+        logbook.add(page);
         String destination = "";
         switch (page) {
             case "overview":
@@ -65,20 +69,16 @@ public class FilmServlet extends HttpServlet {
             case "goLogbook":
                 destination = goLogbook(request);
                 break;
+            case "reset":
+                destination = resetLogbook(request);
+                break;
             default:
                 destination = index(request);
         }
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
-
     private String index(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if(session.getAttribute("logbook")==null) session.setAttribute("logbook", new ArrayList<String>());
-        ArrayList<String> logbook = (ArrayList<String>) session.getAttribute("logbook");
-        logbook.add("index bezocht");
-        session.setAttribute("logbook", logbook);
-
         request.setAttribute("maxr", db.MaxRating());
         request.setAttribute("maxs", db.MaxSpeelduur());
         return "index.jsp";
@@ -173,12 +173,6 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String goLogbook(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        ArrayList<String> logbook = (ArrayList<String>) request.getSession().getAttribute("logbook");
-        logbook.add("logboek bezocht");
-        session.setAttribute("logbook", logbook);
-        String logboektest = (String) request.getSession().getAttribute("logbooktest");
-        session.setAttribute("logboektest","testing");
         return "logbook.jsp";
     }
 
@@ -245,6 +239,11 @@ public class FilmServlet extends HttpServlet {
                 return cookie;
         }
         return null;
+    }
+
+    private String resetLogbook(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return goLogbook(request);
     }
 
     public void destroy() {
