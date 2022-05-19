@@ -16,7 +16,8 @@
 <main class="container">
     <h2>Logboek</h2>
     <form action="FilmServlet" method="get" novalidate>
-        <p><input type="submit" id="reset" value="reset" name="page"></p>
+        <input type="hidden" name="page" value="reset">
+        <p><input type="submit" value="Reset Logbook"></p>
     </form>
     <c:forEach var="l" items="${logbook}">
         <p>${l}</p>

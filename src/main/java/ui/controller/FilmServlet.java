@@ -223,10 +223,6 @@ public class FilmServlet extends HttpServlet {
     private void LastSearch(HttpServletRequest request, HttpServletResponse response, String lastSearchTerm) {
         Cookie c = new Cookie("lastSearch", lastSearchTerm);
         response.addCookie(c);
-
-        if (lastSearchTerm == null || lastSearchTerm.isBlank()) {
-            request.setAttribute("requestCookie", lastSearchTerm);
-        }
     }
 
     private Cookie getCookieWithKey(HttpServletRequest request, String key) {

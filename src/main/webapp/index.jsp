@@ -30,7 +30,8 @@
         ${maxs.rating}/10.
     </p>
     <form action="FilmServlet" method="get" novalidate>
-        <p><input type="submit" id="goLogbook" value="goLogbook" name="page"></p>
+        <input type="hidden" name="page" value="goLogbook">
+        <p><input type="submit" value="Logbook"></p>
     </form>
 </main>
 <footer>
