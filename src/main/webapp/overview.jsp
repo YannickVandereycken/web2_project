@@ -47,11 +47,6 @@
         </c:otherwise>
     </c:choose>
 </main>
-<footer>
-    <div class="container">
-        <h3>Copyright</h3>
-        <p id="copyright"><i>© Yannick Vandereycken</i></p>
-    </div>
-</footer>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

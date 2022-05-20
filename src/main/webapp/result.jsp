@@ -29,11 +29,6 @@
     </c:if>
     <p><a href="FilmServlet?page=index">Home</a> indien je niet meer geïnteresseerd bent.</p>
 </main>
-<footer>
-    <div class="container">
-        <h3>Copyright</h3>
-        <p id="copyright"><i>© Yannick Vandereycken</i></p>
-    </div>
-</footer>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
