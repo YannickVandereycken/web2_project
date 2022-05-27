@@ -4,6 +4,9 @@ import domain.model.Film;
 import domain.db.FilmDB;
 
 import java.io.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -89,11 +92,15 @@ public class FilmServlet extends HttpServlet {
         return "overview.jsp";
     }
 
-    private String goSearch(HttpServletRequest request) {
+    private String goSearch(HttpServletRequest request) throws UnsupportedEncodingException {
+        Cookie cookie = getCookieWithKey(request, "lastSearch");
+        if (cookie != null) {
+            request.setAttribute("cookieSearch", URLDecoder.decode(cookie.getValue(), "UTF-8"));
+        }
         return "search.jsp";
     }
 
-    private String search(HttpServletRequest request, HttpServletResponse response) {
+    private String search(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         ArrayList<String> errors = new ArrayList<String>();
         Film film = new Film();
         validateTitel(film, request, errors);
@@ -102,7 +109,7 @@ public class FilmServlet extends HttpServlet {
                 request.setAttribute("result", db.vindFilm(request.getParameter("titel")));
                 LastSearch(request, response, request.getParameter("titel"));
                 return "result.jsp";
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | UnsupportedEncodingException e) {
                 errors.add(e.getMessage());
             }
         }
@@ -220,9 +227,9 @@ public class FilmServlet extends HttpServlet {
         }
     }
 
-    private void LastSearch(HttpServletRequest request, HttpServletResponse response, String lastSearchTerm) {
-        Cookie c = new Cookie("lastSearch", lastSearchTerm);
-        response.addCookie(c);
+    private void LastSearch(HttpServletRequest request, HttpServletResponse response, String lastSearchTerm) throws UnsupportedEncodingException {
+        Cookie cookie = new Cookie("lastSearch", URLEncoder.encode(lastSearchTerm, "UTF-8"));
+        response.addCookie(cookie);
     }
 
     private Cookie getCookieWithKey(HttpServletRequest request, String key) {
