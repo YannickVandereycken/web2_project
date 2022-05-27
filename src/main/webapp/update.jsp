@@ -26,7 +26,7 @@
             <p><label for="rating" ${ratingError?"class='error'":""}>Rating/10.0</label><input type="number" id="rating" max="10" min="0" name="rating" value="${ratingPrevious}" required></p>
             <input type="hidden" name="id" value="${id}">
             <input type="hidden" name="page" value="updateFilm">
-            <p><input type="submit" id="verstuur" value="indienen"></p>
+            <p><input type="submit" id="verstuur" value="Indienen"></p>
         </form>
     </article>
 </main>

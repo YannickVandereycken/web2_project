@@ -6,7 +6,6 @@ import domain.db.FilmDB;
 import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -82,6 +81,7 @@ public class FilmServlet extends HttpServlet {
     }
 
     private String index(HttpServletRequest request) {
+        request.setAttribute("filmlist", db.getFilmList());
         request.setAttribute("maxr", db.MaxRating());
         request.setAttribute("maxs", db.MaxSpeelduur());
         return "index.jsp";

@@ -58,7 +58,12 @@ public class htmlTest {
 
     @Test
     public void html_update() {
-        isValidHtml(url_cyclone + "FilmServlet?page=update&id=1");
+        isValidHtml(url_cyclone + "FilmServlet?page=update&id=2");
+    }
+
+    @Test
+    public void html_logbook() {
+        isValidHtml(url_cyclone + "FilmServlet?page=goLogbook");
     }
 
     public void isValidHtml(String url) {

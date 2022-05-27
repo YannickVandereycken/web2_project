@@ -25,7 +25,7 @@
             <p><label for="jaar" ${jaarError?"class='error'":""}>Releasejaar</label><input type="number" id="jaar" name="jaar" value="${jaarPrevious}" required></p>
             <p><label for="rating" ${ratingError?"class='error'":""}>Rating/10.0</label><input type="number" id="rating" max="10" min="0" name="rating" value="${ratingPrevious}" required></p>
             <input type="hidden" name="page" value="addFilm">
-            <p><input type="submit" id="verstuur" value="indienen"></p>
+            <p><input type="submit" id="verstuur" value="Indienen"></p>
         </form>
     </article>
 </main>
